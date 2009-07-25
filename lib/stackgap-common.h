@@ -393,6 +393,7 @@ int stackgap(int argc,char* argv[],char* envp[]) {
   _auxvec=auxvec;
 #ifdef WANT_STACKGAP
   unsigned short s;
+  volatile char* gap;
 #endif
 #ifdef __PIE__
   /* This code is meant for static PIE executables. */
@@ -544,7 +545,6 @@ int stackgap(int argc,char* argv[],char* envp[]) {
 
 #if defined(WANT_STACKGAP) || defined(WANT_SSP) || defined(WANT_TLS)
 #if defined(WANT_STACKGAP) || defined(WANT_SSP)
-  volatile char* gap;
   rand=find_in_auxvec(auxvec,25);
   if (!rand) {
     void *tmp=alloca(10);
