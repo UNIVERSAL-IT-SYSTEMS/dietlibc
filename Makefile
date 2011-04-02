@@ -195,7 +195,7 @@ $(OBJDIR)/%.o: %.c | $(OBJDIR)
 	-$(STRIP) -x -R .comment -R .note $@
 else
 $(OBJDIR)/pstart.o: start.S | $(OBJDIR)
-	$(CCC) $(INC) $(CCFLAGS) -DPROFILING -c $< $(ASM_CFLAGS) -o $@
+	$(CCC) $(INC) $(CCFLAGS) $(EXTRACFLAGS) -DPROFILING -c $< $(ASM_CFLAGS) -o $@
 
 $(OBJDIR)/%.o: %.S $(ARCH)/syscalls.h | $(OBJDIR)
 	$(CCC) $(INC) $(CCFLAGS) $(EXTRACFLAGS) -c $< $(ASM_CFLAGS) -o $@
@@ -229,7 +229,7 @@ $(OBJDIR)/start.o: start.S | $(OBJDIR)
 
 
 $(OBJDIR)/crypt.o: libcrypt/crypt.c | $(OBJDIR)
-	$(CCC) $(INC) $(SAFER_CFLAGS) -c $< -o $@
+	$(CCC) $(INC) $(SAFER_CFLAGS) $(EXTRACFLAGS) -c $< -o $@
 
 DIETLIBC_OBJ = $(OBJDIR)/unified.o \
 $(SYSCALLOBJ) $(LIBOBJ) $(LIBSTDIOOBJ) $(LIBUGLYOBJ) \
