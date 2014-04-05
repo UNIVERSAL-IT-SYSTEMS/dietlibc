@@ -148,7 +148,6 @@ void __setup_tls(tcbhead_t* mainthread) {
 #elif defined(__aarch64__)
   asm volatile ("msr tpidr_el0, %0" :: "r"(mainthread));
 #elif defined(__arm__)
-  extern void __arm_set_tls(void*);
   __arm_set_tls(mainthread);
 #elif defined(__hppa__)
   /* control register 27 is used as thread pointer on PA-RISC Linux,
